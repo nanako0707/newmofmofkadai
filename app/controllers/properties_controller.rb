@@ -1,10 +1,7 @@
 class PropertiesController < ApplicationController
+  before_action :set_property, only: [:show, :edit, :update, :destroy]
   def index
     @properties = Property.all
-  end
-
-  def show
-    @property = Property.find(params[:id])
   end
 
   def new
@@ -24,13 +21,13 @@ class PropertiesController < ApplicationController
     end
   end
 
+  def show
+  end
+
   def edit
-    #paramsメソッドにより、parametersの値を取得。
-    @property = Property.find(params[:id])
   end
 
   def update
-    @property = Property.find(params[:id])
     if @property.update(property_params)
       redirect_to properties_path, notice: "物件を編集しました！"
     else
@@ -38,8 +35,19 @@ class PropertiesController < ApplicationController
     end
   end
 
+  def destroy
+    @property.destroy
+    redirect_to properties_path, notice: "物件を削除しました！"
+  end
+
   private
+  #paramsメソッドにより、parametersの値を取得。
   def property_params
     (params.require(:property).permit(:property_name, :rent, :street_address, :age, :note))
+  end
+
+  def set_property
+    #parameterのidを利用して、データベースからデータを取得。
+    @property = Property.find(params[:id])
   end
 end
