@@ -14,6 +14,7 @@
     <td><%= property.street_address %></td>
     <td><%= property.age %>年</td>
     <td><%= property.note %></td>
+    <td><%= link_to '詳細', property_path(property.id) %></td>
   </tr>
 <% end %>
 </table>
