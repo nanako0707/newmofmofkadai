@@ -14,7 +14,9 @@
     <td><%= property.street_address %></td>
     <td><%= property.age %>年</td>
     <td><%= property.note %></td>
+    <!-- property.idとすることで、物件のidを取得できる。 -->
     <td><%= link_to '詳細', property_path(property.id) %></td>
+    <td><%= link_to '編集', edit_property_path(property.id) %></td>
   </tr>
 <% end %>
 </table>
