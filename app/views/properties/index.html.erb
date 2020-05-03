@@ -14,10 +14,10 @@
     <td><%= property.street_address %></td>
     <td><%= property.age %>年</td>
     <td><%= property.note %></td>
-    <!-- property.idとすることで、物件のidを取得できる。 -->
+    <%# <!-- property.idとすることで、物件のidを取得できる。 --> %>
     <td><%= link_to '詳細', property_path(property.id) %></td>
     <td><%= link_to '編集', edit_property_path(property.id) %></td>
-    <!-- link_toのdata, confirmメソッドを使用し、確認ダイアログを表示 -->
+    <%# <!-- link_toのdata, confirmメソッドを使用し、確認ダイアログを表示 --> %>
     <td><%= link_to '削除', property_path(property.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } %></td>
   </tr>
 <% end %>

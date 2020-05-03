@@ -7,6 +7,7 @@ class PropertiesController < ApplicationController
   def new
     #インスタンスをインスタンス変数に代入。ビューにデータを渡す
     @property = Property.new
+    2.times { @property.nearest_stations.build }
   end
 
   def create
@@ -22,9 +23,11 @@ class PropertiesController < ApplicationController
   end
 
   def show
+    @nearest_stations = @property.nearest_stations
   end
 
   def edit
+    @property.nearest_stations.build
   end
 
   def update
@@ -43,7 +46,21 @@ class PropertiesController < ApplicationController
   private
   #paramsメソッドにより、parametersの値を取得。
   def property_params
-    (params.require(:property).permit(:property_name, :rent, :street_address, :age, :note))
+    params.require(:property).permit(
+      :property_name,
+      :rent,
+      :street_address,
+      :age,
+      :note,
+      nearest_stations_attributes: [
+        :route,
+        :station,
+        :minutes_walk,
+        :property_id,
+        :id,
+        :allow_destroy,
+        ],
+      )
   end
 
   def set_property
