@@ -1,6 +1,6 @@
 class PropertiesController < ApplicationController
   before_action :set_property, only: [:show, :edit, :update, :destroy]
-  
+
   def index
     @properties = Property.all
   end
@@ -18,8 +18,8 @@ class PropertiesController < ApplicationController
       #一覧画面へ遷移して、"物件を登録しました！"とメッセージを表示する。
       redirect_to properties_path, notice: "物件を登録しました！"
     else
-    #入力フォーム(new.html.erb)を再描写
-    render :new
+      #入力フォーム(new.html.erb)を再描写
+      render :new
     end
   end
 
